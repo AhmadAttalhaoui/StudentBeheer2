@@ -14,9 +14,9 @@ namespace StudentBeheer2.Controllers
     [Authorize]
     public class ModulesController : Controller
     {
-        private readonly StudentBeheer2Context _context;
+        private readonly ApplicationDbContext _context;
 
-        public ModulesController(StudentBeheer2Context context)
+        public ModulesController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -24,6 +24,7 @@ namespace StudentBeheer2.Controllers
         // GET: Modules
         public async Task<IActionResult> Index()
         {
+
             return View(await _context.Module.ToListAsync());
         }
 
@@ -60,6 +61,7 @@ namespace StudentBeheer2.Controllers
         {
             if (ModelState.IsValid)
             {
+                module.Sender = (Areas.Identity.Data.ApplicationUser?)await _context.Users.FirstOrDefaultAsync(u => u.UserName == User.Identity.Name);
                 _context.Add(@module);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

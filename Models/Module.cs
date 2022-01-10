@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using StudentBeheer2.Areas.Identity.Data;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace StudentBeheer2.Models
 {
@@ -19,10 +22,17 @@ namespace StudentBeheer2.Models
         [DataType(DataType.Date)]
         public DateTime Begin { get; set; }
 
+        [ForeignKey("ApplicationUser")]
+        [Display(Name = "Verzender")]
+        public string SenderId { get; set; }
+        public ApplicationUser? Sender { get; set; }
+
         [Required]
         [Display(Name = "Eind Data")]
         [DataType(DataType.Date)]
         public DateTime Eind { get; set; }
         /*public IList<Inschrijvingen> Inschrijvingen { get; set; }*/
+        /*public SelectList ModeToSelect { get; set; }*/
+        public string SelectMode { get; set; }
     }
 }

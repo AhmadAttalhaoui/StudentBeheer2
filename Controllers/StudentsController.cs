@@ -14,9 +14,9 @@ namespace StudentBeheer2.Controllers
     [Authorize]
     public class StudentsController : Controller
     {
-        private readonly StudentBeheer2Context _context;
+        private readonly ApplicationDbContext _context;
 
-        public StudentsController(StudentBeheer2Context context)
+        public StudentsController(ApplicationDbContext context)
         {
             _context = context;
         }

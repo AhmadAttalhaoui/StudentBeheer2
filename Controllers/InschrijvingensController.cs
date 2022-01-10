@@ -14,9 +14,9 @@ namespace StudentBeheer2.Controllers
     [Authorize (Roles = "Admin")]
     public class InschrijvingensController : Controller
     {
-        private readonly StudentBeheer2Context _context;
+        private readonly ApplicationDbContext _context;
 
-        public InschrijvingensController(StudentBeheer2Context context)
+        public InschrijvingensController(ApplicationDbContext context)
         {
             _context = context;
         }
